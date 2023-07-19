@@ -1,0 +1,14 @@
+package com.controlproduct.controlproduct.service;
+
+import org.springframework.stereotype.Service;
+
+import com.controlproduct.controlproduct.domain.ProductRepository;
+@Service
+public class ProductService {
+
+private final ProductRepository productRepository = null;
+
+
+
+	
+}

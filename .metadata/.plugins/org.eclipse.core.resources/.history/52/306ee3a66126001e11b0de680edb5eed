@@ -1,0 +1,5 @@
+package com.controlproduct.controlproduct.service;
+
+public class ProductService {
+
+}
