@@ -34,12 +34,12 @@ public class ProductService {
 			productRepository.save(product);
 	}
 		
-		public void deleteProduct(Long id, Product product) {
+		public void deleteProduct(Long id) {
 			productRepository.deleteById(id);
 	}
 		
-		public List <Product> getProductPriceMax(double Price){
-			return productRepository.findByPriceGreaterThan(Price);
+		public List <Product>getProductPriceMax(double price){
+			return productRepository.findByPriceGreaterThan(price);
 			
 			
 		}
