@@ -8,46 +8,39 @@ import org.springframework.stereotype.Service;
 
 import com.controlproduct.controlproduct.domain.Product;
 import com.controlproduct.controlproduct.domain.ProductRepository;
+
 @Service
 public class ProductService {
-
-	private  ProductRepository productRepository;
-
+	
+	private ProductRepository productRepository;
+	
 	@Autowired
 	public ProductService(ProductRepository productRepository) {
-	this.productRepository = productRepository;	
+		this.productRepository = productRepository;
 	}
-
+	
 	public List<Product> getAllProducts(){
-	return productRepository.findAll();
+		return productRepository.findAll();
 	}
 	
 	public Optional<Product> getProductById(Long id){
-		return productRepository.findById(id);	
+		return productRepository.findById(id);
 	}
 	
 	public Product createProduct(Product product) {
 		return productRepository.save(product);
 	}
-	public void updateProduct(Long id,Product product) {
-			product.setId(id);
-			productRepository.save(product);
+	
+	public void updateProduct(Long id, Product product) {
+		product.setId(id);
+		productRepository.save(product);
 	}
-		
-		public void deleteProduct(Long id) {
-			productRepository.deleteById(id);
+	
+	public void deleteProduct(Long id) {
+		productRepository.deleteById(id);
 	}
-		
-		public List <Product>getProductPriceMax(double price){
-			return productRepository.findByPriceGreaterThan(price);
-			
-			
-		}
-		
+	
+	public List<Product> getProductPriceMax(double price){
+		return productRepository.findByPriceGreaterThan(price);
+	}
 }
-	
-	
-
-
-
-

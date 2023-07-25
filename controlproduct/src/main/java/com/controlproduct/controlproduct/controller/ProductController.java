@@ -26,62 +26,47 @@ public class ProductController {
 	
 	@Autowired
 	public ProductController(ProductService productService) {
-		
 		this.productService = productService;
 	}
-
+	
 	@GetMapping("/all")
 	public List<Product> getAllProducts(){
 		return productService.getAllProducts();
 	}
 	
-	
 	@GetMapping("/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable Long id){
 		Optional<Product> product = productService.getProductById(id);
 		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-		
 	}
 	
-	
 	@PostMapping
-	public  ResponseEntity<Product> createProduct(@RequestBody Product product) {
+	public ResponseEntity<Product> createProduct(@RequestBody Product product){
 		Product createProduct = productService.createProduct(product);
-		return new ResponseEntity<>(createProduct,HttpStatus.CREATED);
-		
+		return new ResponseEntity<>(createProduct, HttpStatus.CREATED);	
 	}
 	
 	@PutMapping("/up/{id}")
 	public ResponseEntity<Void> updateProduct(@PathVariable Long id, @RequestBody Product product){
-		
-		Optional<Product> existProduct = productService.getProductById(id);
-		
-		if(existProduct.isPresent()) {
-			
-			productService.updateProduct(id,product);
-			
+		Optional<Product> existProduct =productService.getProductById(id);
+		if (existProduct.isPresent()) {
+			productService.updateProduct(id, product);
+			return ResponseEntity.notFound().build();
+		} else {
 			return ResponseEntity.notFound().build();
 		}
-		else {
-			
-			return ResponseEntity.notFound().build();
-		}
-		
 	}
 	
 	@DeleteMapping("/dl/{id}")
-	 public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+	public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
 		Optional<Product> existProduct =productService.getProductById(id);
-		if(existProduct.isPresent()) {
+		if (existProduct.isPresent()) {
 			productService.deleteProduct(id);
 			return ResponseEntity.notFound().build();
-			
-		}
-		else {
+		} else {
 			return ResponseEntity.notFound().build();
 		}
-		
 	}
+	
 
-		
 }
