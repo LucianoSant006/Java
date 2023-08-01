@@ -6,32 +6,45 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Clientes {
+public class Client {
 	
-	Sexo sx;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String Sexo;
+	private String cpf;
+	private String sexo;
 	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSexo() {
-		return Sexo;
+	
+	public String getCpf() {
+		return cpf;
 	}
-	public void setSexo(String Sexo) {
-		this.Sexo= Sexo;
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	public String getSexo() {
+		return sexo;
+	}
+	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 	
 }
