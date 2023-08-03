@@ -14,6 +14,7 @@ public class Client {
 	private String name;
 	private String cpf;
 	private String sexo;
+	private String img;
 	
 	public Long getId() {
 		return id;
@@ -45,6 +46,14 @@ public class Client {
 	
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 }

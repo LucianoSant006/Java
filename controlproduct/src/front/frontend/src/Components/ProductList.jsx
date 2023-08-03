@@ -1,42 +1,28 @@
-import React, {useState,useEffect} from 'react';
-import axios from 'axios';
+import axios from 'axios'
+import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
-const ProductList = () => {
+export default function ProductList() {
 
-    const [products,setProducts] = useState([]); 
+  const [product,setProduct] = useState([])
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/products')
-        .then(response =>{
+  const getAllProducts = ()=>{
+    axios.get("http://localhost:8080/products")
+    .then(Response =>{
+        setProduct(Response.data)
+    })
+    .catch(error=>{console.log(error)})
+  }
 
-            setProducts(response.data);
+  useEffect(()=>{
+    getAllProducts()
+  },[])
+  
 
-        })
-        .cath(error => ('Error de listagem de produtos',error));
-    },[]);
-    
-        return (
-        <div>
-            <h2>Lista de produtos</h2>
-            <ul>
-                    {products.map(product =>(
-                     <li key={product.id}>
-                        {product.name} - {product.description} - {product.price}
-
-                     </li>
-
-
-                    ))} 
-            </ul>
-        </div>
-    );
-
-};
-
-
-
-
-
-
-
-
+  return (
+    <div>
+        <h1>ProductList</h1>
+    </div>
+  )
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const ProductForm = () => {
-  const [product, setProduct] = useState({
+  const [products, setProduct] = useState({
     name: '',
     description: '',
     price: ''
@@ -18,14 +18,17 @@ const ProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/products', product)
+    axios.post('http://localhost:8080/api/product', product)
       .then(response => {
-        console.log('Product created', response.data);
+        console.log('Product created:', response.data);
         setProduct({
           name: '',
           description: '',
           price: ''
         });
+      })
+      .catch(error => {
+        console.error('Error creating product:', error);
       });
   };
 
@@ -39,13 +42,14 @@ const ProductForm = () => {
         </div>
         <div>
           <label>Description:</label>
-          <input type="text" name="description" value={product.description} onChange={handleChange} />
+          <input type="text" name="description" 
+          value={product.description} onChange={handleChange} />
         </div>
         <div>
           <label>Price:</label>
           <input type="text" name="price" value={product.price} onChange={handleChange} />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );
